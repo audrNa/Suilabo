@@ -50,19 +50,19 @@
                     <label for="i" class="form-label math">i</label>
                     <input type="number" class="form-control" id="i" placeholder="Interest rate per period">
                     <div class="form-text">The interest rate divided by amount of compounding periods.</div>
-                    <div class="form-text">"If money is worth 8% compounded quarterly..." 8% / 4 = 2% = <strong>0.02</strong></div>
+                    <div class="form-text">If money is worth <span class="underline">8%</span> compounded <span class="underline">quarterly</span> (4)..." 8% / 4 = 2% = <strong>0.02</strong></div>
                 </div>
                 <div class="mb-3">
                     <label for="r" class="form-label math">R</label>
                     <input type="number" class="form-control" id="r" placeholder="Periodic Payment">
                     <div class="form-text">Payment in money periodically.</div>
-                    <div class="form-text">"...an ordinary annuity paying P2000..." <strong>2000</strong></div>
+                    <div class="form-text">"...an ordinary annuity paying <span class="underline">P2000</span>..." <strong>2000</strong></div>
                 </div>
                 <div class="mb-3">
                     <label for="n" class="form-label math">n</label>
                     <input type="number" class="form-control" id="n" placeholder="Payment periods">
                     <div class="form-text">The term of years multiplied by compounding periods.</div>
-                    <div class="form-text">"...Paying P2000 quarterly (4) for a term of four (4) years?" 4(4) = <strong>16</strong></div>
+                    <div class="form-text">"...Paying P2000 <span class="underline">quarterly</span> (4) for a term of <span class="underline">four (4) years</span>?" 4(4) = <strong>16</strong></div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="execute()">audr's Magic Calculator</button>
             </form>

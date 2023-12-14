@@ -7,3 +7,7 @@
 .math {
     font-family: 'Noto Sans Math';
 }
+
+.underline {
+    text-decoration: underline;
+}
