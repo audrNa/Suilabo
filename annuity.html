@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+        <script src="./scripts/annuity.js"></script>
+        <link href="./styles/base.css" rel="stylesheet">
+        <link href="./styles/annuity.css" rel="stylesheet">
+        <title>Suilabo: Annuity</title>
+    </head>
+    <body>
+
+        <!-- Navgination Bar -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Suilabo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="annuity.html">Annuity</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main -->
+        <section class="box">
+
+            <!-- User Input -->
+            <h1>Annuity</h1>
+            <form id="user-input">
+                <div class="mb-3">
+                    <label for="annuity-type" class="form-label">Annuity Type</label>
+                    <select id="annuity-type" class="form-select">
+                        <option value="ordinary">Ordinary Annuity</option>
+                        <option value="due">Annuity Due</option>
+                    </select>
+                    <!-- <label for="annuity-type">Annuity Type</label> -->
+                </div>
+                <div class="mb-3">
+                    <label for="i" class="form-label math">i</label>
+                    <input type="number" class="form-control" id="i" placeholder="Interest rate per period">
+                    <div class="form-text">The interest rate divided by amount of compounding periods.</div>
+                    <div class="form-text">"If money is worth 8% compounded quarterly..." 8% / 4 = 2% = <strong>0.02</strong></div>
+                </div>
+                <div class="mb-3">
+                    <label for="r" class="form-label math">R</label>
+                    <input type="number" class="form-control" id="r" placeholder="Periodic Payment">
+                    <div class="form-text">Payment in money periodically.</div>
+                    <div class="form-text">"...an ordinary annuity paying P2000..." <strong>2000</strong></div>
+                </div>
+                <div class="mb-3">
+                    <label for="n" class="form-label math">n</label>
+                    <input type="number" class="form-control" id="n" placeholder="Payment periods">
+                    <div class="form-text">The term of years multiplied by compounding periods.</div>
+                    <div class="form-text">"...Paying P2000 quarterly (4) for a term of four (4) years?" 4(4) = <strong>16</strong></div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="execute()">audr's Magic Calculator</button>
+            </form>
+            <br>
+
+            <!-- Solution & Answer -->
+            <!-- temp d-block -->
+            <div id="solution" class="fs-1 d-none">
+                <h2>Answer</h2>
+                <div id="annuity-pv" class="math">= 727</div>
+                <div id="annuity-fv" class="math">= wysi</div>
+                <hr>
+
+                <h2>Formula</h2>
+                <!-- what the fuck are these -->
+                <math id="formula-pv-ordinary" class="mb-3 d-none" display="block">
+                    <mi>PV</mi>
+                    <mo>=</mo>
+                    <mi>R</mi>
+                    <mo>[</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <msup>
+
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>+</mo>
+                                        <mi>i</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                </msup>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>i</mi>
+                                <msup>
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>+</mo>
+                                        <mi>i</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                </msup>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                    <mo>]</mo>
+                </math>
+
+                <math id="formula-fv-ordinary" class="mb-3 d-none" display="block">
+                    <mi>FV</mi>
+                    <mo>=</mo>
+                    <mi>R</mi>
+                    <mo>[</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <msup>
+
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>+</mo>
+                                        <mi>i</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+
+                                    <mrow>
+                                        <mi>n</mi>
+                                    </mrow>
+                                </msup>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                    <mo>]</mo>
+                </math>
+
+                <math id="formula-pv-due" class="mb-3 d-none" display="block">
+                    <msub>
+                        <mi>PV</mi>
+                        <mi>due</mi>
+                    </msub>
+                    <mo>=</mo>
+                    <mi>R</mi>
+                    <mo>[</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <mn>1</mn>
+                                <mo>−</mo>
+                                <msup>
+
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>+</mo>
+                                        <mi>i</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mo>−</mo>
+                                        <mi>n</mi>
+                                    </mrow>
+                                </msup>
+                            </mrow>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                        </mfrac>
+                        <mo>+</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mo>]</mo>
+                </math>
+
+                <math id="formula-fv-due" class="mb-3 d-none" display="block">
+                    <msub>
+                        <mi>FV</mi>
+                        <mi>due</mi>
+                    </msub>
+                    <mo>=</mo>
+                    <mi>R</mi>
+                    <mo>[</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <msup>
+
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mn>1</mn>
+                                        <mo>+</mo>
+                                        <mi>i</mi>
+                                        <mo>)</mo>
+                                    </mrow>
+
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msup>
+                                <mo>−</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                        </mfrac>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mo>]</mo>
+                </math>
+
+            </div>
+        </section>
+
+    </body>
+</html>
